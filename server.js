@@ -23,7 +23,7 @@ app.use(express.json({ virtuals: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: "keyword",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
         expires: 2592000000
