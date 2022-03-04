@@ -15,9 +15,10 @@ dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
 app.use(cors({
-    origin: true, // allow to server to accept request from different origin
+    origin: "*", // allow to server to accept request from different origin
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
     credentials: true, // allow session cookie from browser to pass through
+    exposedHeaders: ['Set-Cookie', 'Date', 'ETag']
 })); //for cross-origin-resourses
 app.use(express.json({ virtuals: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +27,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 2592000000
+        expires: 2592000000,
+        sameSite: true,
+        maxAge: 2592000000
     },
     store: MongoStore.create({ 
         mongoUrl: process.env.MONGO_URI,
