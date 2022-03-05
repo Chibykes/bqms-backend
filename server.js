@@ -15,7 +15,7 @@ dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
 app.use(cors({
-    origin: "*", // allow to server to accept request from different origin
+    origin: true, // allow to server to accept request from different origin
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
     credentials: true, // allow session cookie from browser to pass through
 })); //for cross-origin-resourses
