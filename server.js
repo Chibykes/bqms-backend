@@ -24,7 +24,7 @@ app.use(express.json({ virtuals: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: "keyword",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: {
         secure: true,
