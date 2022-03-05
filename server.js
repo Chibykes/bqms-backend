@@ -14,6 +14,8 @@ const path = require('path');
 dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
+app.set('trust proxy', 'https://bqms.herokuapp.com');
+
 app.use(cors({
     origin: ["https://bqms.herokuapp.com"], // allow to server to accept request from different origin
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
@@ -27,10 +29,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-//         domain: "https://bqms.herokuapp.com",
-//         secure: true,
+        domain: "https://bqms.herokuapp.com",
+        secure: true,
         expires: 2592000000,
-//         sameSite: 'none',
+        sameSite: 'none',
         maxAge: 2592000000
     },
     store: MongoStore.create({ 
