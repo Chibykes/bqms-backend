@@ -14,7 +14,7 @@ const path = require('path');
 dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
-app.set('trust proxy', 'https://bqms.herokuapp.com');
+app.set('trust proxy', true);
 
 app.use(cors({
     origin: ["https://bqms.herokuapp.com"], // allow to server to accept request from different origin
