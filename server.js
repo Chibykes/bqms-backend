@@ -28,7 +28,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         expires: 2592000000,
-        sameSite: true,
         maxAge: 2592000000
     },
     store: MongoStore.create({ 
