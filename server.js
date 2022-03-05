@@ -15,7 +15,7 @@ dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
 app.use(cors({
-    origin: ["https://bqms.herokuapp.com","http://localhost:3000","http://localhost:8081"], // allow to server to accept request from different origin
+    origin: ["https://bqms.herokuapp.com"], // allow to server to accept request from different origin
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
     credentials: true, // allow session cookie from browser to pass through
     exposedHeaders: ['Set-Cookie', 'Date', 'ETag']
@@ -27,10 +27,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        domain: "https://bqms.herokuapp.com",
-        secure: true,
+//         domain: "https://bqms.herokuapp.com",
+//         secure: true,
         expires: 2592000000,
-        sameSite: 'none',
+//         sameSite: 'none',
         maxAge: 2592000000
     },
     store: MongoStore.create({ 
