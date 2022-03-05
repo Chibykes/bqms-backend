@@ -29,7 +29,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        domain: "https://bqms.herokuapp.com",
+        domain: "https://bqms-backend.herokuapp.com",
         secure: true,
         expires: 2592000000,
         sameSite: 'none',
