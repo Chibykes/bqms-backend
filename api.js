@@ -77,6 +77,17 @@ app.get('/appointments/:id', ensureAuth, async(req, res)=>{
     })
 });
 
+app.get('/admin/appointment/:id', ensureAuth, async(req, res)=>{
+    const data = await Appointments.findOne({ id: req.params.id })
+                        .populate('user', 'name id -_id')
+                        .sort({updatedAt: -1});
+    res.json({
+        status: 'success',
+        data,
+        user: req.user
+    })
+});
+
 app.get('/appointments/admin/:id/:status/:date/:office', ensureAuth, async(req, res)=>{
     const { status, id, date, office } = req.params;
     let e = {};
