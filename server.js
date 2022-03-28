@@ -14,11 +14,13 @@ const path = require('path');
 dotenv.config({ path: './config/config.env' });
 require('./config/db-connection')();
 
+app.set('trust proxy', true);
 app.use(cors({
-    origin: true, // allow to server to accept request from different origin
+    origin: ["https://bqms.herokuapp.com"],
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
-    credentials: true, // allow session cookie from browser to pass through
-})); //for cross-origin-resourses
+    credentials: true,
+    exposedHeaders: ['Set-Cookie', 'Date', 'ETag']
+}));
 app.use(express.json({ virtuals: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -26,7 +28,11 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 2592000000
+        domain: "bqms-backend.herokuapp.com",
+        secure: true,
+        expires: 2592000000,
+        sameSite: 'none',
+        maxAge: 2592000000
     },
     store: MongoStore.create({ 
         mongoUrl: process.env.MONGO_URI,

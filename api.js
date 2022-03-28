@@ -106,7 +106,7 @@ app.get('/appointments/admin/:id/:status/:date/:office', ensureAuth, async(req, 
         .populate('user', 'name id -_id')
         .sort({updatedAt: -1});
 
-    const data = await Appointments.find({ })
+    const data = await Appointments.findOne({ id })
                     .populate('user', 'name id -_id')
                     .sort({updatedAt: -1});
 

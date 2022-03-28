@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     role: {type: String, lowercase: true, default: 'student'},
     name: {type: String, lowercase: true},
     phone: {type: String},
-    reg_no: {type: String, uppercase: true},
+    matno: {type: String, uppercase: true},
     password: {type: String},
 
 }, {timestamps: true});
